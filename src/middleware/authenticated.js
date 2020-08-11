@@ -1,3 +1,4 @@
 export const auth = function() {
-  return false
+  console.log(localStorage.username)
+  return localStorage.username ? true : false
 }

@@ -55,3 +55,13 @@ details-dialog {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
+
+details-dialog .form-group {
+  margin-top: 0;
+}
+
+form .flash {
+  display: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
