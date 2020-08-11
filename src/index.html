@@ -3,10 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🐍 Anaconda</title>
+  <title>🐍Anaconda</title>
+  <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+  <link href="./app.css" rel="stylesheet" />
 </head>
-<body>
-  <h1></h1>
+<body class="bg-gray">
+  <main id="app">
+    <header class="Header bg-white border">
+      <div class="container">
+        <div class="Header-item">
+          <a href="#" class="Header-link f4 d-flex flex-items-center">
+            <h1 class="text-gray-dark">🐍Anaconda</h1>
+          </a>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <form id="setup"></form>
+      <section class="Box box-shadow content-area">
+        <div class="Box-row">
+          <h2 class="m-0">My Anaconda 🐍</h2>
+        </div>
+        <div class="Box-row">
+          <div class="Box Box--condensed box-shadow">
+            <div class="Box-header">
+              Head
+            </div>
+            <div class="Box-row">
+              <p class="mb-0 text-gray">
+                head
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="Box-row">
+          <div class="Box Box--condensed box-shadow">
+            <div class="Box-header">
+              Body
+            </div>
+            <div class="Box-row">
+              <p class="mb-0 text-gray">
+                body
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="Box-row">
+          <div class="Box Box--condensed box-shadow">
+            <div class="Box-header">
+              Tale
+            </div>
+            <div class="Box-row">
+              <p class="mb-0 text-gray">
+                tale
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
   <script type="module" src="./app.js"></script>
 </body>
 </html>
