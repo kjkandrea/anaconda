@@ -18,6 +18,7 @@ Clock.getTimer = function() {
   const second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()
 
   Clock.el.innerText = `${hour}:${minute}:${second}`
+  Clock.el.setAttribute('datetime', `${hour}:${minute}:${second}`)
 }
 
 export default Clock
