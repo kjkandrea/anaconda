@@ -35,3 +35,23 @@ html, body, #app {
 .content-area h3 {
   font-size: 1rem;
 }
+
+details summary {
+  display: none;
+  font-size: 0;
+}
+
+details[open] summary {
+  display: block;
+}
+
+details-dialog {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  max-width: 460px;
+  padding: 0 15px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}

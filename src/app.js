@@ -1,5 +1,5 @@
-const headlineEl = document.getElementsByTagName('h1')
+import Controller from './controllers/Controller.js'
 
 window.addEventListener('DOMContentLoaded', () => { 
-  headlineEl[0].innerHTML = "Hello, Anaconda"
+  Controller.init()
 })
