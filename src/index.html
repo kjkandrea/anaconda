@@ -21,7 +21,7 @@
     <div class="container">
       <section id="information-widget" class="Box box-shadow" style="display: none">
         <div class="Box-row">
-          <h2></h2>
+          <h2><!-- Hello Headline --></h2>
         </div>
         <div class="Box-row">
           <p class="mb-0">현재 시간은 <time id="clock" class="Label" datetime="00:00:00">00:00:00</time>이며 현재 날씨 정보는 다음과 같습니다.<br><span id="weather" class="Label">불러오는 중...</span></p>
@@ -37,7 +37,10 @@
               Head
             </div>
             <div class="Box-row">
-              <button class="js-add-btn btn btn-sm mb-0 text-gray" data-part="head">
+              <form class="js-add-item-form" data-part="head" style="display:none">
+                <input class="form-control input-sm mb-2 width-full" type="text" placeholder="예) 오후 3시에 정기 회의" />
+              </form>
+              <button class="js-add-btn btn btn-sm mb-0 text-gray"">
                 Add Head +
               </button>
             </div>
@@ -69,6 +72,7 @@
         </div>
       </section>
     </div>
+
     <details id="sign-in" class="details-reset details-overlay details-overlay-dark">
       <summary aria-haspopup="dialog">Open dialog</summary>
       <details-dialog class="anim-fade-in fast">

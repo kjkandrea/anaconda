@@ -7,18 +7,27 @@ AddItem.setup = function(el) {
 
 AddItem.bindEvents = function() {
   const addButton = this.el.querySelectorAll('.js-add-btn')
+  const addForm = this.el.querySelectorAll('.js-add-item-form')
   addButton.forEach(el => {
     el.addEventListener('click', this.onClickAdd)
   });
+  addForm.forEach(el => {
+    el.addEventListener('submit', this.onSubmitAdd)
+  })
 }
 
 AddItem.onClickAdd = function(e) {
-  const part = e.target.dataset.part
-  console.log('%s add button click', part)
+  e.target.previousElementSibling.style.display = 'block'
+  e.target.previousElementSibling.querySelector('input').focus()
 }
 
-AddItem.add = function() {
+AddItem.onSubmitAdd = function(e) {
+  e.preventDefault()
 
+  const val = e.target.querySelector('input').value
+  const type = e.target.dataset.part
+
+  console.log(val, type)
 }
 
 export default AddItem;
