@@ -1,10 +1,14 @@
+// Components
 import SignIn from '../components/SignIn.js'
 import HelloHeadline from '../components/HelloHeadline.js'
 import Clock from '../components/Clock.js'
 import Weather from '../components/Weather.js'
+import AddItem from '../components/AddItem.js'
 
+// Utils
 import PubSub from '../utils/PubSub.js'
 
+// API
 import OpenWeatherMap from '../api/OpenWeatherMap.js'
 
 const Controller = {}
@@ -13,7 +17,8 @@ Controller.selectors = {
   SignIn : document.getElementById('sign-in'),
   InformationWidget : document.getElementById('information-widget'),
   Clock : document.getElementById('clock'),
-  Weather : document.getElementById('weather')
+  Weather : document.getElementById('weather'),
+  Anaconda : document.getElementById('anaconda')
 }
 
 Controller.init = function() {
@@ -30,6 +35,8 @@ Controller.userInit = function() {
   PubSub.subscribe('@requestCoords', Controller.getWeather)
   PubSub.subscribe('@saveCoords', Controller.saveCoords)
   Weather.setup(Controller.selectors.Weather)
+
+  AddItem.setup(Controller.selectors.Anaconda)
 }
 
 Controller.onSubmitSignIn = function(data) {

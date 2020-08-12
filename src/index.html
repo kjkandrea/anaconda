@@ -12,7 +12,7 @@
     <header class="Header bg-white border">
       <div class="container">
         <div class="Header-item">
-          <a href="#" class="Header-link f4 d-flex flex-items-center">
+          <a href="/" class="Header-link f4 d-flex flex-items-center">
             <h1 class="text-gray-dark">🐍 Anaconda</h1>
           </a>
         </div>
@@ -27,9 +27,9 @@
           <p class="mb-0">현재 시간은 <time id="clock" class="Label" datetime="00:00:00">00:00:00</time>이며 현재 날씨 정보는 다음과 같습니다.<br><span id="weather" class="Label">불러오는 중...</span></p>
         </div>
       </section>
-      <section class="Box box-shadow">
+      <section id="anaconda" class="Box box-shadow">
         <div class="Box-row">
-          <h2 class="m-0">My Anaconda</h2>
+          <h2 class="m-0">아나콘다</h2>
         </div>
         <div class="Box-row">
           <div class="Box Box--condensed box-shadow">
@@ -37,9 +37,9 @@
               Head
             </div>
             <div class="Box-row">
-              <p class="mb-0 text-gray">
-                head
-              </p>
+              <button class="js-add-btn btn btn-sm mb-0 text-gray" data-part="head">
+                Add Head +
+              </button>
             </div>
           </div>
         </div>
@@ -49,9 +49,9 @@
               Body
             </div>
             <div class="Box-row">
-              <p class="mb-0 text-gray">
-                body
-              </p>
+              <button class="js-add-btn btn btn-sm mb-0 text-gray" data-part="body">
+                Add Body +
+              </button>
             </div>
           </div>
         </div>
@@ -61,9 +61,9 @@
               Tale
             </div>
             <div class="Box-row">
-              <p class="mb-0 text-gray">
-                tale
-              </p>
+              <button class="js-add-btn btn btn-sm mb-0 text-gray" data-part="tale">
+                Add Tale +
+              </button>
             </div>
           </div>
         </div>
