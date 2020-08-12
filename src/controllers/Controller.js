@@ -27,7 +27,7 @@ Controller.userInit = function() {
 
   Clock.setup(Controller.selectors.Clock)
 
-  PubSub.subscribe('@requestCoords', Controller.getCoords)
+  PubSub.subscribe('@requestCoords', Controller.getWeather)
   PubSub.subscribe('@saveCoords', Controller.saveCoords)
   Weather.setup(Controller.selectors.Weather)
 }
@@ -38,13 +38,25 @@ Controller.onSubmitSignIn = function(data) {
 
 Controller.saveCoords = function(obj) {
   localStorage.setItem("coords", JSON.stringify(obj))
-  Controller.getCoords(obj)
+  Controller.getWeather(obj)
 }
 
-Controller.getCoords = function(obj) {
-  OpenWeatherMap.get(obj.latitude, obj.longitude).then(res => {
-    Weather.render(res)
-  })
+Controller.getWeather = function(obj) {
+  const beforeWeather = JSON.parse(localStorage.getItem('beforeWeather'))
+  const beforeUpdateTime = beforeWeather.lastUpdate
+  const UpdateOneHourOver = 3600000 > (Date.now() - beforeUpdateTime) ? false : true
+
+  if (beforeWeather || !UpdateOneHourOver) {
+    Weather.render(beforeWeather)
+  }
+
+  if (beforeWeather === null || UpdateOneHourOver) {
+    OpenWeatherMap.get(obj.latitude, obj.longitude).then(res => {
+      const newObj = {...res, lastUpdate: Date.now()}
+      localStorage.setItem("beforeWeather", JSON.stringify(newObj))
+      Weather.render(newObj)
+    })
+  }
 }
 
 export default Controller
