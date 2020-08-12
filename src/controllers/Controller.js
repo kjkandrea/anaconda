@@ -22,10 +22,15 @@ Controller.init = function() {
 
   Clock.setup(this.selectors.Clock)
   Weather.setup(this.selectors.Weather)
+  Pubsub.subscribe('@saveCoords', this.saveCoords)
 }
 
 Controller.onSubmitSignIn = function(data) {
   localStorage.setItem("username", data)
+}
+
+Controller.saveCoords = function(obj) {
+  localStorage.setItem("coords", JSON.stringify(obj))
 }
 
 export default Controller

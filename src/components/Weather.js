@@ -1,3 +1,5 @@
+import PubSub from '../utils/PubSub.js'
+
 const Weather = {}
 
 Weather.setup = function() {
@@ -5,7 +7,7 @@ Weather.setup = function() {
 }
 
 Weather.loadCoords = function() {
-  const coords = null; // = localStorage.getItem(COORDS)
+  const coords = localStorage.getItem('coords')
   if (!coords) {
     this.askForCoords()
   }
@@ -16,7 +18,10 @@ Weather.askForCoords = function() {
 }
 
 Weather.handleGeoSuccess = function(position) {
-  console.log(position)
+  const latitude = position.coords.latitude
+  const longitude = position.coords.longitude
+
+  PubSub.publish('@saveCoords', {latitude, longitude})
 }
 
 Weather.handleGeoError = function() {

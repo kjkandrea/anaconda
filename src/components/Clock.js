@@ -2,7 +2,6 @@ const Clock = {}
 
 Clock.setup = function(el) {
   this.el = el
-  console.log(this.el)
   this.bindEvents()
   return this
 }
