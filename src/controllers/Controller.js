@@ -85,7 +85,7 @@ Controller.postItem = function(obj){
     }
   }
 
-  data[obj.type].push({data : obj.data})
+  data[obj.type].push({data : obj.data, checked: false})
   localStorage.setItem('anaconda', JSON.stringify(data))  
 
   Anaconda.render()

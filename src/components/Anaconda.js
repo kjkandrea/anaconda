@@ -13,6 +13,14 @@ Anaconda.setup = function(el) {
 Anaconda.render = function() {
   let data = JSON.parse(localStorage.getItem('anaconda'))
 
+  if (data === null) {
+    data = {
+      head: [],
+      body: [],
+      tale: [],
+    }
+  }
+
   for(const part in Anaconda.el) {
     let template = ''
 
