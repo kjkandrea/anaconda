@@ -17,16 +17,19 @@ Controller.selectors = {
 }
 
 Controller.init = function() {
+  PubSub.subscribe('@user', Controller.userInit)
   PubSub.subscribe('@submit', this.onSubmitSignIn)
   SignIn.setup(this.selectors.SignIn)
+}
 
-  HelloHeadline.setup(this.selectors.InformationWidget)
+Controller.userInit = function() {
+  HelloHeadline.setup(Controller.selectors.InformationWidget)
 
-  Clock.setup(this.selectors.Clock)
+  Clock.setup(Controller.selectors.Clock)
 
-  PubSub.subscribe('@requestCoords', this.getCoords)
-  PubSub.subscribe('@saveCoords', this.saveCoords)
-  Weather.setup(this.selectors.Weather)
+  PubSub.subscribe('@requestCoords', Controller.getCoords)
+  PubSub.subscribe('@saveCoords', Controller.saveCoords)
+  Weather.setup(Controller.selectors.Weather)
 }
 
 Controller.onSubmitSignIn = function(data) {
@@ -35,7 +38,7 @@ Controller.onSubmitSignIn = function(data) {
 
 Controller.saveCoords = function(obj) {
   localStorage.setItem("coords", JSON.stringify(obj))
-  console.log('save coords')
+  Controller.getCoords(obj)
 }
 
 Controller.getCoords = function(obj) {

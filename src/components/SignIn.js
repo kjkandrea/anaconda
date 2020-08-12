@@ -29,6 +29,7 @@ SignIn.onSubmitForm = function(e) {
   if (!!username) {
     Pubsub.publish('@submit', username)
     modal.close(SignIn.el)
+    auth()
   } else {
     form.showGuide(e.target, 'username을 입력하세요.', e.target.username)
   }

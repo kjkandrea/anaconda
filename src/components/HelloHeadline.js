@@ -1,10 +1,8 @@
-import { auth } from '../middleware/Authenticated.js'
-
 const HelloHeadline = {}
 
 HelloHeadline.setup = function(el) {
   this.el = el
-  if (auth()) this.render(el)
+  this.render(el)
 }
 
 HelloHeadline.render = function(el) {
