@@ -3,7 +3,9 @@ import HelloHeadline from '../components/HelloHeadline.js'
 import Clock from '../components/Clock.js'
 import Weather from '../components/Weather.js'
 
-import Pubsub from '../utils/PubSub.js'
+import PubSub from '../utils/PubSub.js'
+
+import OpenWeatherMap from '../api/OpenWeatherMap.js'
 
 const Controller = {}
 
@@ -15,14 +17,16 @@ Controller.selectors = {
 }
 
 Controller.init = function() {
+  PubSub.subscribe('@submit', this.onSubmitSignIn)
   SignIn.setup(this.selectors.SignIn)
-  Pubsub.subscribe('@submit', this.onSubmitSignIn)
 
   HelloHeadline.setup(this.selectors.InformationWidget)
 
   Clock.setup(this.selectors.Clock)
+
+  PubSub.subscribe('@requestCoords', this.getCoords)
+  PubSub.subscribe('@saveCoords', this.saveCoords)
   Weather.setup(this.selectors.Weather)
-  Pubsub.subscribe('@saveCoords', this.saveCoords)
 }
 
 Controller.onSubmitSignIn = function(data) {
@@ -31,6 +35,13 @@ Controller.onSubmitSignIn = function(data) {
 
 Controller.saveCoords = function(obj) {
   localStorage.setItem("coords", JSON.stringify(obj))
+  console.log('save coords')
+}
+
+Controller.getCoords = function(obj) {
+  OpenWeatherMap.get(obj.latitude, obj.longitude).then(res => {
+    Weather.render(res)
+  })
 }
 
 export default Controller
