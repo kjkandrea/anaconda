@@ -43,19 +43,23 @@ Controller.saveCoords = function(obj) {
 
 Controller.getWeather = function(obj) {
   const beforeWeather = JSON.parse(localStorage.getItem('beforeWeather'))
-  const beforeUpdateTime = beforeWeather.lastUpdate
-  const UpdateOneHourOver = 3600000 > (Date.now() - beforeUpdateTime) ? false : true
-
-  if (beforeWeather || !UpdateOneHourOver) {
-    Weather.render(beforeWeather)
-  }
-
-  if (beforeWeather === null || UpdateOneHourOver) {
+  const getFunc = () => {
     OpenWeatherMap.get(obj.latitude, obj.longitude).then(res => {
       const newObj = {...res, lastUpdate: Date.now()}
       localStorage.setItem("beforeWeather", JSON.stringify(newObj))
       Weather.render(newObj)
     })
+  }
+
+  if (beforeWeather) {
+    const beforeUpdateTime = beforeWeather.lastUpdate
+    const UpdateOneHourOver = 3600000 > (Date.now() - beforeUpdateTime) ? false : true
+
+    UpdateOneHourOver ? getFunc() : Weather.render(beforeWeather)
+  }
+
+  if (beforeWeather === null) {
+    getFunc()
   }
 }
 
