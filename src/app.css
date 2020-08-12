@@ -69,3 +69,18 @@ form .flash {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
+#app .todo-item {
+  min-height: 35px;
+  padding: 5px 16px;
+}
+
+#app .todo-item .btn-remove {
+  display: none;
+  padding: 3px 8px;
+  line-height: 1rem;
+}
+
+#app .todo-item:hover .btn-remove {
+  display: block;
+}
