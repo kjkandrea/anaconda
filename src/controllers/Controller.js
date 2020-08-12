@@ -3,6 +3,7 @@ import SignIn from '../components/SignIn.js'
 import HelloHeadline from '../components/HelloHeadline.js'
 import Clock from '../components/Clock.js'
 import Weather from '../components/Weather.js'
+import Anaconda from '../components/Anaconda.js'
 import AddItem from '../components/AddItem.js'
 
 // Utils
@@ -36,6 +37,9 @@ Controller.userInit = function() {
   PubSub.subscribe('@saveCoords', Controller.saveCoords)
   Weather.setup(Controller.selectors.Weather)
 
+  Anaconda.setup(Controller.selectors.Anaconda)
+
+  PubSub.subscribe('@submitAddItem', Controller.postItem)
   AddItem.setup(Controller.selectors.Anaconda)
 }
 
@@ -68,6 +72,23 @@ Controller.getWeather = function(obj) {
   if (beforeWeather === null) {
     getFunc()
   }
+}
+
+Controller.postItem = function(obj){
+  let data = JSON.parse(localStorage.getItem('anaconda'))
+  
+  if (data === null) {
+    data = {
+      head: [],
+      body: [],
+      tale: [],
+    }
+  }
+
+  data[obj.type].push({data : obj.data})
+  localStorage.setItem('anaconda', JSON.stringify(data))  
+
+  Anaconda.render()
 }
 
 export default Controller

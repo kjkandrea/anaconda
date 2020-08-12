@@ -1,3 +1,5 @@
+import PubSub from '../utils/PubSub.js'
+
 const AddItem = {}
 
 AddItem.setup = function(el) {
@@ -24,10 +26,10 @@ AddItem.onClickAdd = function(e) {
 AddItem.onSubmitAdd = function(e) {
   e.preventDefault()
 
-  const val = e.target.querySelector('input').value
+  const data = e.target.querySelector('input').value
   const type = e.target.dataset.part
 
-  console.log(val, type)
+  PubSub.publish('@submitAddItem', {data, type})
 }
 
 export default AddItem;

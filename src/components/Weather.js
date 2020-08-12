@@ -36,4 +36,8 @@ Weather.handleGeoError = function() {
   console.error('Geo Location 에 접근할 수 없습니다.')
 }
 
+Weather.getWeather = function() {
+  
+}
+
 export default Weather
